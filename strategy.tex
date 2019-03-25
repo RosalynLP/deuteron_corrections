@@ -1,0 +1,42 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage} % Package to use full page
+\usepackage[utf8]{inputenc}
+%\setlength\parindent{0pt}
+\usepackage{amsmath} %for writing text in equations with \text{}
+\usepackage{dsfont} %for identity matrix
+\usepackage[T1]{fontenc}
+
+\title{\textbf{Deuteron Corrections: Strategy}}
+\author{Rosalyn Pearson}
+\date{\normalsize\today} 
+
+\begin{document}
+\maketitle
+%\tableofcontents
+\section{Overview}
+\begin{itemize}
+\item The implementation will be on a new branch in \texttt{APFEL} called \texttt{deuteron}.
+\item Analysis will be in the github repository \newline \texttt{https://github.com/RosalynLP/deuteron\_corrections.git}.
+\item We will proceed similarly to the nuclear corrections project, except rather than using external deuteron PDFs (dPDFs) we will produce these ourselves.
+\item To produce the dPDFs we will fit only the deuteron data. This consists of DIS (NMC, SLAC, BCDMS) and also some FT DY (DYE886 from NuSea).
+\item Some alterations need to be made to the proton fitting procedure to adapt it for deuteron fits:
+\begin{itemize}
+    \item The DIS data is for the deuteron structure function 
+    \begin{equation}
+    \begin{split}
+        F_2^d = &\frac{1}{2}(F_2^p + F_2^n) = xC_{2,q} \otimes \bigg[ \frac{5}{18}(u^+(x,Q^2)+d^+(x,Q^2)) + \frac{4}{9}(c^+(x,Q^2) + t^+(x,Q^2)) 
+        \\ &+ \frac{1}{9}(s^+(x,Q^2) + b^+(x,Q^2))\bigg] + c_g(n_f)xC_{2,g}\otimes g(x,Q^2)
+    \end{split}
+    \end{equation}
+    and the fit produces the proton PDF. When constructing the covariance matrix we just need to infer the dPDF by isoscalarity relations.
+    \item The DY data is for the observable DYE886R, which is the ratio of reduced cross sections (see eqns 7 and 8 in arXiv:1002.4407) for a proton beam on a deuteron target to a proton beam on a proton target. Currently an isoscalarity relation is used to convert the dPDF in the numerator to a proton PDF, and then both numerator and denominator are convolved twice with the proton PDF at the fitting stage. We need to remove this isoscalarity condition and then apply a "preprocessing" convolution of the denominator twice and the numerator once with the baseline proton PDF. We then want to convolve the numerator with the dPDF at the fit level. This necessitates inclusion of the dPDF FK table in APFEL. 
+\end{itemize}
+\end{itemize}
+\section{Next steps}
+\begin{enumerate}
+    \item In \texttt{apfel/src/FTDY/src/sigmafk\_dy.f}, define a new observable, \texttt{DYP\_E886D\_deuteron}, to replace \texttt{DYP\_E886D}, which is the current numerator of the reduced cross-section ratio.  
+    \item In \texttt{apfel/src/FTDY/src/ComputeFKTables.f}, define a new observable \texttt{DYP\_E886R\_deuteron}, to replace \texttt{DYP\_E886R}, where the difference is that \texttt{DYP\_E886D\_deuteron} replaces \texttt{DYP\_E886D}.
+    \item Work out how to preprocess the new observable by convolving with the baseline proton PDF.
+\end{enumerate}
+
+\end{document}
