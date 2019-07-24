@@ -1,0 +1,41 @@
+meta:
+   author: Rosalyn Pearson
+   title: Theoretical predictions
+
+theoryid: 53
+
+use_cuts: False
+
+fit: DIS_deuteron_2
+
+pdf: 
+   - from_: fit
+
+experiments:
+   - experiment: NMC
+     datasets:
+        - NMCPD
+        - NMC
+   - experiment: SLAC
+     datasets:
+        - SLACP
+        - SLACD
+   - experiment: BCDMS
+     datasets:
+        - BCDMSP
+        - BCDMSD
+   - experiment: HERACOMB
+     datasets:
+        - dataset: HERACOMBNCEM 
+        - dataset: HERACOMBNCEP460
+        - dataset: HERACOMBNCEP575
+        - dataset: HERACOMBNCEP820
+        - dataset: HERACOMBNCEP920
+        - dataset: HERACOMBCCEM
+        - dataset: HERACOMBCCEP
+   - experiment: HERAF2CHARM
+     datasets:
+        - dataset: HERAF2CHARM
+
+actions_:
+   - experiments::experiment experiment_result_table
