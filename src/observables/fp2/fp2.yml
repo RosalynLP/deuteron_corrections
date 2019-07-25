@@ -4,7 +4,7 @@ meta:
 
 theoryid: 53
 
-use_cuts: False
+use_cuts: fromfit
 
 fit: DIS_proton
 
@@ -15,27 +15,27 @@ experiments:
    - experiment: NMC
      datasets:
         - dataset: NMCPD
-        - dataset: NMC
+#        - dataset: NMC
    - experiment: SLAC
      datasets:
-        - dataset: SLACP
+#        - dataset: SLACP
         - dataset: SLACD
    - experiment: BCDMS
      datasets:
-        - dataset: BCDMSP
+#        - dataset: BCDMSP
         - dataset: BCDMSD
-   - experiment: HERACOMB
-     datasets:
-        - dataset: HERACOMBNCEM 
-        - dataset: HERACOMBNCEP460
-        - dataset: HERACOMBNCEP575
-        - dataset: HERACOMBNCEP820
-        - dataset: HERACOMBNCEP920
-        - dataset: HERACOMBCCEM
-        - dataset: HERACOMBCCEP
-   - experiment: HERAF2CHARM
-     datasets:
-        - dataset: HERAF2CHARM
+#   - experiment: HERACOMB
+#     datasets:
+#        - dataset: HERACOMBNCEM 
+#        - dataset: HERACOMBNCEP460
+#        - dataset: HERACOMBNCEP575
+#        - dataset: HERACOMBNCEP820
+#        - dataset: HERACOMBNCEP920
+#        - dataset: HERACOMBCCEM
+#        - dataset: HERACOMBCCEP
+#   - experiment: HERAF2CHARM
+#     datasets:
+#        - dataset: HERAF2CHARM
 
 actions_:
    - experiment_result_table
