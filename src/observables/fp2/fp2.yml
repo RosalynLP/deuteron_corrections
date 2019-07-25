@@ -9,21 +9,21 @@ use_cuts: False
 fit: DIS_proton
 
 pdf: 
-   - from_: fit
+   from_: fit
 
 experiments:
    - experiment: NMC
      datasets:
-        - NMCPD
-        - NMC
+        - dataset: NMCPD
+        - dataset: NMC
    - experiment: SLAC
      datasets:
-        - SLACP
-        - SLACD
+        - dataset: SLACP
+        - dataset: SLACD
    - experiment: BCDMS
      datasets:
-        - BCDMSP
-        - BCDMSD
+        - dataset: BCDMSP
+        - dataset: BCDMSD
    - experiment: HERACOMB
      datasets:
         - dataset: HERACOMBNCEM 
@@ -38,4 +38,4 @@ experiments:
         - dataset: HERAF2CHARM
 
 actions_:
-   - experiments::experiment experiment_result_table
+   - experiment_result_table

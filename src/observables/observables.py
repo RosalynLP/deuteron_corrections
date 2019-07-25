@@ -11,9 +11,9 @@ import pandas as pd
 import sys
 import matplotlib.pyplot as plt
 
-fp1_table = pd.read_table("./fp1/output/tables/experiments_results_table.csv",
+fp1_table = pd.read_table("./fp1/output/tables/experiment_result_table.csv",
                           dtype ={"user_id": float})
-fp2_table = pd.read_table("./fp2/output/tables/experiments_results_table.csv",
+fp2_table = pd.read_table("./fp2/output/tables/experiment_result_table.csv",
                           dtype ={"user_id": float})
 
 
