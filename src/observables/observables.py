@@ -5,10 +5,7 @@ Created on Wed Jul 24 11:04:39 2019
 
 @author: rosalyn
 """
-
-import numpy as np
 import pandas as pd
-import sys
 import matplotlib.pyplot as plt
 import seaborn as sns
 
