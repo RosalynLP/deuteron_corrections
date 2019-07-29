@@ -2,19 +2,19 @@ meta:
    author: Rosalyn Pearson
    title: Theoretical predictions
 
-theoryid: 53
+theoryid: 52
 
 use_cuts: fromfit
 
-fit: DIS_proton
+fit: rp_20190725_DIS_proton_2
 
 pdf: 
    from_: fit
 
 experiments:
-   - experiment: NMC
-     datasets:
-        - dataset: NMCPD
+#   - experiment: NMC
+#     datasets:
+#        - dataset: NMCPD
 #        - dataset: NMC
    - experiment: SLAC
      datasets:
