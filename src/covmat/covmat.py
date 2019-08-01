@@ -33,6 +33,7 @@ def covmat_plots(label, fp1_table, fp2_table):
         covmat = (1/nrep) * deltas@deltas.T
         normcovmat = covmat/np.outer(D.values, D.values)
 
+        # Full covmat plot
         fig, ax = plt.subplots(figsize=(6,6))
         matrixplot = ax.matshow(100*normcovmat,
                                 cmap=cm.Spectral_r)
@@ -41,7 +42,16 @@ def covmat_plots(label, fp1_table, fp2_table):
         cbar.ax.tick_params(labelsize=12)
         ax.set_title(f"{ds}", fontsize=15)
         plt.savefig(f"../../plots/covmats/covmats_{label}_{ds}.png")
-    return fig
+
+        # Diag element plot
+        sqrtdiags = np.sqrt(np.diag(normcovmat))
+        fig2, ax2 = plt.subplots(figsize=(15,6))
+        ax2.plot(100*sqrtdiags, '-o', color="darkorange")
+        ax2.set_ylabel("% of data")
+        ax2.set_title(f"Diagonal elements of covariance matrix for {ds}",
+                      fontsize=15)
+        plt.savefig(f"../../plots/covmats/diag_covmat_{label}_{ds}.png")
+    return fig, fig2
 
 # Loading DIS and global experiment tables
 
