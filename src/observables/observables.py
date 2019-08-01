@@ -13,12 +13,6 @@ sns.set()
 
 
 def matrix_plot_labels(df):
-    """Returns the tick locations and labels, and the starting
-    point values for each category,  based on a dataframe
-    to be plotted. The dataframe is assumed to be multiindexed by
-    (process, dataset, points) or else (dataset, points). The tick
-    location is in the centre of the dataset, and labelling is by
-    the outermost index of the multiindex."""
     datasetlabels = [x for x in df["dataset"]]
     points = [x for x in df["id"]]
     labels = datasetlabels

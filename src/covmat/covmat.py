@@ -13,30 +13,60 @@ from matplotlib import cm
 
 sns.set()
 
-fp1_table = pd.read_table(
-    "../observables/fp1/output/tables/experiment_result_table.csv", dtype={"user_id": float}
+def covmat_plots(label, fp1_table, fp2_table):
+    # Separating data sets to produce a separate covmat for each one
+    datasets = fp1_table.dataset.unique()
+    for ds in datasets:
+        fp1_table_ds = fp1_table.query(f'dataset == "{ds}"')
+        fp2_table_ds = fp2_table.query(f'dataset == "{ds}"')
+
+        T_fp2 = fp2_table_ds["theory_central"]
+        D = fp1_table_ds["data_central"]
+
+        # Calculating errors on T_fp1 by taking standard deviation
+        T_fp1_reps = fp1_table_ds.loc[:, fp1_table.columns.str.contains("rep")]
+        nrep = len(T_fp1_reps.values.T)
+
+        T_fp2_repeat = np.tile(T_fp2.values, (nrep,1)).T
+        deltas = T_fp1_reps.values - T_fp2_repeat
+
+        covmat = (1/nrep) * deltas@deltas.T
+        normcovmat = covmat/np.outer(D.values, D.values)
+
+        fig, ax = plt.subplots(figsize=(6,6))
+        matrixplot = ax.matshow(100*normcovmat,
+                                cmap=cm.Spectral_r)
+        cbar=fig.colorbar(matrixplot, fraction=0.046, pad=0.04)
+        cbar.set_label(label="% of data", fontsize=12)
+        cbar.ax.tick_params(labelsize=12)
+        ax.set_title(f"{ds}", fontsize=15)
+        plt.savefig(f"../../plots/covmats/covmats_{label}_{ds}.png")
+    return fig
+
+# Loading DIS and global experiment tables
+
+fp1_table_DIS = pd.read_table(
+    "../observables/fp1/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float}
 )
 
-fp2_table = pd.read_table(
-    "../observables/fp2/output/tables/experiment_result_table.csv", dtype={"user_id": float}
+fp2_table_DIS = pd.read_table(
+    "../observables/fp2/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float}
 )
 
-# Cutting to same size for comparison
-#fp1_table = fp1_table.query('dataset == "BCDMSD"')
-#fp2_table = fp2_table.query('dataset == "BCDMSD"')
+#fp1_table_global = pd.read_table(
+#    "../observables/fp1_global/output/tables/experiment_result_table.csv",
+#    dtype={"user_id": float}
+#)
 
-T_fp1 = fp1_table["theory_central"]
-T_fp2 = fp2_table["theory_central"]
+fp2_table_global = pd.read_table(
+    "../observables/fp2_global/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float}
+)
 
-# Calculating errors on T_fp1 by taking standard deviation
-T_fp1_reps = fp1_table.loc[:, fp1_table.columns.str.contains("rep")]
+# Plotting
 
-nrep = len(T_fp1_reps.values.T)
+covmat_plots("DIS", fp1_table_DIS, fp2_table_DIS)
 
-T_fp2_repeat = np.tile(T_fp2.values, (nrep,1)).T
-deltas = T_fp1_reps.values - T_fp2_repeat
-
-covmat = (1/nrep) * deltas@deltas.T
-
-fig, ax = plt.subplots(figsize=(6,6))
-ax.matshow(covmat, cmap=cm.Spectral_r)
+covmat_plots("global_proton", fp1_table_DIS, fp2_table_global)
