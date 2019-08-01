@@ -6,10 +6,9 @@ theoryid: 53
 
 use_cuts: fromfit
 
-fit: rp_20190729_DIS_proton
+fit: rp_20190729_DIS_deuteron
 
-pdf: 
-   from_: fit
+pdf: rp_20190729_DIS_proton
 
 experiments:
 #   - experiment: NMC
