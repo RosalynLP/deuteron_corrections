@@ -2,11 +2,11 @@ meta:
    author: Rosalyn Pearson
    title: Theoretical predictions
 
-theoryid: 52
+theoryid: 53
 
 use_cuts: fromfit
 
-fit: rp_20190725_DIS_deuteron
+fit: rp_20190729_DIS_deuteron
 
 pdf:
    from_: fit

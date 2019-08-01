@@ -2,11 +2,11 @@ meta:
    author: Rosalyn Pearson
    title: Theoretical predictions
 
-theoryid: 52
+theoryid: 53
 
 use_cuts: fromfit
 
-fit: rp_20190725_DIS_proton_2
+fit: rp_20190729_DIS_proton
 
 pdf: 
    from_: fit
