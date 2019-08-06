@@ -63,7 +63,6 @@ def covmat_plots(label, fp1_table, fp2_table):
     startlocs_lines = [x - 0.5 for x in startlocs]
     ymin, ymax = ax.get_ylim()
     xmin, xmax = ax.get_xlim()
-    ax.hlines(1, xmin, xmax, linestyles="-")
     ax.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
     ax.hlines(startlocs_lines, xmin, xmax, linestyles='dashed')
     ax.margins(x=0, y=0)
