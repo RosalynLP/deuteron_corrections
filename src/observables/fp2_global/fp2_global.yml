@@ -38,3 +38,4 @@ experiments:
 
 actions_:
    - experiment_result_table
+   - experiments_covmat
