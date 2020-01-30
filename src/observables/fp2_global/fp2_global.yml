@@ -6,35 +6,23 @@ theoryid: 53
 
 use_cuts: fromfit
 
-fit: rp_20190729_DIS_deuteron # NNPDF31_nnlo_as_0118_deuteron_only
+fit: NNPDF31_nnlo_as_0118_deuteron_only
 
 pdf: NNPDF31_nnlo_as_0118_proton_only
 
 experiments:
-#   - experiment: NMC
-#     datasets:
-#        - dataset: NMCPD
-#        - dataset: NMC
+   - experiment: NMC
+     datasets:
+        - { dataset: NMCPD_D, cfac: [DEU]}
    - experiment: SLAC
      datasets:
-#        - dataset: SLACP
         - dataset: SLACD
    - experiment: BCDMS
      datasets:
-#        - dataset: BCDMSP
         - dataset: BCDMSD
-#   - experiment: HERACOMB
-#     datasets:
-#        - dataset: HERACOMBNCEM 
-#        - dataset: HERACOMBNCEP460
-#        - dataset: HERACOMBNCEP575
-#        - dataset: HERACOMBNCEP820
-#        - dataset: HERACOMBNCEP920
-#        - dataset: HERACOMBCCEM
-#        - dataset: HERACOMBCCEP
-#   - experiment: HERAF2CHARM
-#     datasets:
-#        - dataset: HERAF2CHARM
+   - experiment: DYE886
+     datasets:
+        - { dataset: DYE886_D, cfac: [DEU]}
 
 actions_:
    - experiment_result_table

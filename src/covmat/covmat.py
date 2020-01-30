@@ -14,8 +14,9 @@ from matplotlib import cm
 sns.set()
 
 def matrix_plot_labels(df):
-    datasetlabels = [x for x in df["dataset"]]
-    points = [x for x in df["id"]]
+    explabels = [x[0] for x in df.index]
+    datasetlabels = [x[1] for x in df.index]
+    points = [x[2] for x in df.index]
     labels = datasetlabels
     unique_ds = []
     unique_ds.append([labels[0], points[0]])
@@ -46,8 +47,8 @@ def matrix_plot(matrix, labeldf, descrip, label):
     startlocs_lines = [x - 0.5 for x in startlocs]
     ymin, ymax = ax.get_ylim()
     xmin, xmax = ax.get_xlim()
-    ax.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
-    ax.hlines(startlocs_lines, xmin, xmax, linestyles='dashed')
+    ax.vlines(startlocs_lines, 0, 1, transform=ax.get_xaxis_transform(), linestyles="dashed")
+    ax.hlines(startlocs_lines,0, 1, transform=ax.get_yaxis_transform(), linestyles='dashed')
     ax.margins(x=0, y=0)
     plt.savefig(f"../../plots/covmats/covmats_{descrip}_{label}.png")
     return fig
@@ -56,8 +57,9 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     # Separating data sets to produce a separate covmat for each one
 #    datasets = fp1_table.dataset.unique()
 
-    # Cutting down experimental covmat
-    expcovmat = ((fp1_covmat.values[3:]).T[3:].T).astype(np.float64)
+   # # Cutting down experimental covmat
+   # expcovmat = ((fp1_covmat.values[3:]).T[3:].T).astype(np.float64)
+    expcovmat = fp1_covmat.values
 
     T_fp2 = fp2_table["theory_central"]
     D = fp1_table["data_central"]
@@ -103,44 +105,52 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
 
 fp1_table_DIS = pd.read_table(
     "../observables/fp1/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2]
 )
 
 fp2_table_DIS = pd.read_table(
     "../observables/fp2/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2]
 )
 
-#fp1_table_global = pd.read_table(
-#    "../observables/fp1_global/output/tables/experiment_result_table.csv",
-#    dtype={"user_id": float}
-#)
+fp1_table_global = pd.read_table(
+    "../observables/fp1_global/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float},
+    index_col=[0,1,2]
+)
 
 fp2_table_global = pd.read_table(
     "../observables/fp2_global/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2]
 )
 
 # Loading DIS and experiment covmats
 
 fp1_covmat_DIS = pd.read_table(
     "../observables/fp1/output/tables/experiments_covmat.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2], header=[0,1,2]
 )
 
 fp2_covmat_DIS = pd.read_table(
     "../observables/fp2/output/tables/experiments_covmat.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2], header=[0,1,2]
 )
 
-#fp1_covmat_global = pd.read_table(
-#    "../observables/fp1_global/output/tables/experiments_covmat.csv",
-#    dtype={"user_id": float}
-#)
+fp1_covmat_global = pd.read_table(
+    "../observables/fp1_global/output/tables/experiments_covmat.csv",
+    dtype={"user_id": float},
+    index_col=[0,1,2], header=[0,1,2]
+)
 
 fp2_covmat_global = pd.read_table(
     "../observables/fp2_global/output/tables/experiments_covmat.csv",
-    dtype={"user_id": float}
+    dtype={"user_id": float},
+    index_col=[0,1,2], header=[0,1,2]
 )
 
 # Plotting
@@ -148,5 +158,5 @@ fp2_covmat_global = pd.read_table(
 covmat_plots("DIS", fp1_table_DIS, fp2_table_DIS,
              fp1_covmat_DIS)
 
-covmat_plots("global_proton", fp1_table_DIS, fp2_table_global,
-             fp1_covmat_DIS)
+covmat_plots("global_proton", fp1_table_global, fp2_table_global,
+             fp1_covmat_global)

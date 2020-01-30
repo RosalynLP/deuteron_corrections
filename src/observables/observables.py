@@ -71,10 +71,10 @@ fp2_table_DIS = pd.read_table(
     dtype={"user_id": float}
 )
 
-#fp1_table_global = pd.read_table(
-#    "./fp1_global/output/tables/experiment_result_table.csv",
-#    dtype={"user_id": float}
-#)
+fp1_table_global = pd.read_table(
+    "./fp1_global/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float}
+)
 
 fp2_table_global = pd.read_table(
     "./fp2_global/output/tables/experiment_result_table.csv",
@@ -85,7 +85,7 @@ fp2_table_global = pd.read_table(
 
 plot_observable_ratio("DIS", fp1_table_DIS, fp2_table_DIS)
 
-plot_observable_ratio("global_proton", fp1_table_DIS, fp2_table_global)
+plot_observable_ratio("global_proton", fp1_table_global, fp2_table_global)
 
 
 
