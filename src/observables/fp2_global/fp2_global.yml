@@ -6,14 +6,14 @@ theoryid: 53
 
 use_cuts: fromfit
 
-fit: NNPDF31_nnlo_as_0118_deuteron_only
+fit: NNPDF31_nnlo_as_0118_1000
 
 pdf: NNPDF31_nnlo_as_0118_proton_only
 
 experiments:
    - experiment: NMC
      datasets:
-        - { dataset: NMCPD_D, cfac: [DEU]}
+        -  dataset: NMCPD
    - experiment: SLAC
      datasets:
         - dataset: SLACD
@@ -22,7 +22,7 @@ experiments:
         - dataset: BCDMSD
    - experiment: DYE886
      datasets:
-        - { dataset: DYE886_D, cfac: [DEU]}
+        -  dataset: DYE886R
 
 actions_:
    - experiment_result_table

@@ -6,11 +6,14 @@ theoryid: 53
 
 use_cuts: fromfit
 
-fit: rp_20190729_DIS_deuteron
+fit: NNPDF31_nnlo_as_0118_1000 #rp_20190729_DIS_deuteron
 
 pdf: rp_20190729_DIS_proton
 
 experiments:
+   - experiment: NMC
+     datasets:
+        -  dataset: NMCPD
    - experiment: SLAC
      datasets:
         - dataset: SLACD
