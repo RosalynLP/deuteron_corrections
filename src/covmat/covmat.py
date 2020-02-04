@@ -31,16 +31,15 @@ def matrix_plot_labels(df):
         ticklocs[i] = 0.5 * (startlocs[i + 1] + startlocs[i])
     return ticklocs, ticklabels, startlocs
 
-def matrix_plot(matrix, labeldf, descrip, label):
+def corrmat_plot(matrix, labeldf, descrip, label):
     fig, ax = plt.subplots(figsize=(6,6))
-    matrixplot = ax.matshow(100*matrix,
-                            cmap=cm.Spectral_r,
-                            norm=mcolors.SymLogNorm(linthresh=0.01,
-                        linscale=10))
+    diag_minus_half = (np.diagonal(matrix))**(-0.5)
+    corrmat = diag_minus_half[:,np.newaxis]*matrix*diag_minus_half
+    matrixplot = ax.matshow(corrmat,
+                            cmap=cm.Spectral_r)
     cbar=fig.colorbar(matrixplot, fraction=0.046, pad=0.04)
-    cbar.set_label(label="% of data", fontsize=15)
     cbar.ax.tick_params(labelsize=12)
-    ax.set_title(f"Covariance matrix: {descrip} {label}", fontsize=15)
+    ax.set_title(f"Correlation matrix: {descrip} {label}", fontsize=15)
     ticklocs, ticklabels, startlocs = matrix_plot_labels(labeldf)
     plt.xticks(ticklocs, ticklabels, rotation=45, fontsize=15)
     plt.gca().xaxis.tick_bottom()
@@ -77,10 +76,10 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     normcovmat = covmat/np.outer(D.values, D.values)
     normexpcovmat = expcovmat/np.outer(D.values, D.values)
     expsqrtdiags = np.sqrt(np.diag(normexpcovmat))
-    impactcovmat = (covmat + expcovmat)/expcovmat
+    totcovmat = covmat + expcovmat
 
-    fig_th = matrix_plot(normcovmat, fp1_table, "theory", label)
-    fig_imp = matrix_plot(impactcovmat, fp1_table, "impact", label)
+    fig_th = corrmat_plot(normcovmat, fp1_table, "theory", label)
+    fig_imp = corrmat_plot(totcovmat, fp1_table, "total", label)
 
     # Diag element plot
     sqrtdiags = np.sqrt(np.diag(normcovmat))
