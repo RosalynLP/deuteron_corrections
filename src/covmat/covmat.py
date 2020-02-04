@@ -79,6 +79,7 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     normexpcovmat = expcovmat/np.outer(D.values, D.values)
     expsqrtdiags = np.sqrt(np.diag(normexpcovmat))
     totcovmat = covmat + expcovmat
+    totnormcovmat = totcovmat/np.outer(D.values, D.values)
 
     fig_th = corrmat_plot(covmat, fp1_table, "theory", label)
     fig_exp = corrmat_plot(expcovmat, fp1_table, "experiment", label)
@@ -86,9 +87,11 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
 
     # Diag element plot
     sqrtdiags = np.sqrt(np.diag(normcovmat))
+    totsqrtdiags = np.sqrt(np.diag(totnormcovmat))
     fig_diag, ax2 = plt.subplots(figsize=(15,6))
     ax2.plot(100*sqrtdiags, '-o', color="darkorange", label="S")
     ax2.plot(100*expsqrtdiags, '-o', color="purple", label="C")
+    ax2.plot(100*totsqrtdiags, '-o', color="green", label="C+S")
     ax2.set_ylabel("% of data", fontsize=15)
     ax2.set_title(f"Diagonal elements of covariance matrix: {label}",
                   fontsize=15)
