@@ -36,7 +36,9 @@ def corrmat_plot(matrix, labeldf, descrip, label):
     diag_minus_half = (np.diagonal(matrix))**(-0.5)
     corrmat = diag_minus_half[:,np.newaxis]*matrix*diag_minus_half
     matrixplot = ax.matshow(corrmat,
-                            cmap=cm.Spectral_r)
+                            cmap=cm.Spectral_r,
+                            vmin = -1,
+                            vmax = +1)
     cbar=fig.colorbar(matrixplot, fraction=0.046, pad=0.04)
     cbar.ax.tick_params(labelsize=12)
     ax.set_title(f"Correlation matrix: {descrip} {label}", fontsize=15)
@@ -78,8 +80,9 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     expsqrtdiags = np.sqrt(np.diag(normexpcovmat))
     totcovmat = covmat + expcovmat
 
-    fig_th = corrmat_plot(normcovmat, fp1_table, "theory", label)
-    fig_imp = corrmat_plot(totcovmat, fp1_table, "total", label)
+    fig_th = corrmat_plot(covmat, fp1_table, "theory", label)
+    fig_exp = corrmat_plot(expcovmat, fp1_table, "experiment", label)
+    fig_tot = corrmat_plot(totcovmat, fp1_table, "total", label)
 
     # Diag element plot
     sqrtdiags = np.sqrt(np.diag(normcovmat))
@@ -101,7 +104,7 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     ax2.legend(fontsize=15)
     plt.savefig(f"../../plots/covmats/diag_covmat_{label}.png")
 
-    return fig_th, fig_imp, fig_diag
+    return fig_th, fig_exp, fig_tot, fig_diag
 
 # Loading DIS and global experiment tables
 
