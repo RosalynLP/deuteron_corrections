@@ -55,7 +55,7 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     ax.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
     ax.margins(x=0, y=0)
     ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=20)
-    ax.set_ylim([0.8,1.4])
+    ax.set_ylim([0.5,1.55])
     plt.savefig(f"../../plots/observables/observable_ratio_{label}.png")
     return fig
 
