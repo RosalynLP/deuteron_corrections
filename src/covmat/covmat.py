@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib import cm
+from matplotlib import cm, colors as mcolors
 
 sns.set()
 
@@ -34,7 +34,9 @@ def matrix_plot_labels(df):
 def matrix_plot(matrix, labeldf, descrip, label):
     fig, ax = plt.subplots(figsize=(6,6))
     matrixplot = ax.matshow(100*matrix,
-                            cmap=cm.Spectral_r)
+                            cmap=cm.Spectral_r,
+                            norm=mcolors.SymLogNorm(linthresh=0.01,
+                        linscale=10))
     cbar=fig.colorbar(matrixplot, fraction=0.046, pad=0.04)
     cbar.set_label(label="% of data", fontsize=15)
     cbar.ax.tick_params(labelsize=12)
@@ -88,6 +90,7 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     ax2.set_ylabel("% of data", fontsize=15)
     ax2.set_title(f"Diagonal elements of covariance matrix: {label}",
                   fontsize=15)
+    ax2.set_ylim([0, 50])
     ticklocs, ticklabels, startlocs = matrix_plot_labels(fp1_table)
     plt.xticks(ticklocs, ticklabels, rotation=30, ha="right", fontsize=15)
     # Shift startlocs elements 0.5 to left so lines are between indexes
