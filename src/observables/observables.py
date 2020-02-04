@@ -39,7 +39,7 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     T_fp1_errs = T_fp1_reps.std(axis=1)
 
     # Plotting
-    fig, ax = plt.subplots(figsize=(15, 6))
+    fig, ax = plt.subplots(figsize=(15, 10))
     ax.errorbar(range(len(T_fp1)),
                 T_fp1 / T_fp2,
                 yerr=T_fp1_errs / T_fp2,
@@ -55,6 +55,7 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     ax.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
     ax.margins(x=0, y=0)
     ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=20)
+    ax.set_ylim([0.8,1.4])
     plt.savefig(f"../../plots/observables/observable_ratio_{label}.png")
     return fig
 
