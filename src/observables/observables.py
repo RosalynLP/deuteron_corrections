@@ -49,13 +49,13 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     plt.xticks(ticklocs, ticklabels, rotation=45, fontsize=15)
     # Shift startlocs elements 0.5 to left so lines are between indexes
     startlocs_lines = [x - 0.5 for x in startlocs]
+    ax.margins(x=0, y=0)
+    ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=20)
+    ax.set_ylim([0.8,1.4])
     ymin, ymax = ax.get_ylim()
     xmin, xmax = ax.get_xlim()
     ax.hlines(1, xmin, xmax, linestyles="-")
     ax.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
-    ax.margins(x=0, y=0)
-    ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=20)
-    ax.set_ylim([0.8,1.4])
     plt.savefig(f"../../plots/observables/observable_ratio_{label}.png")
     return fig
 
@@ -82,11 +82,20 @@ fp2_table_global = pd.read_table(
     dtype={"user_id": float}
 )
 
+# Loading iteration fit
+
+fp2_table_global_iteration1 = pd.read_table(
+    "./fp2_global_iteration1/output/tables/experiment_result_table.csv",
+    dtype={"user_id": float}
+)
+
 # Plotting
 
 plot_observable_ratio("DIS", fp1_table_DIS, fp2_table_DIS)
 
 plot_observable_ratio("global_proton", fp1_table_global, fp2_table_global)
+
+plot_observable_ratio("Iteration 1", fp1_table_global, fp2_table_global_iteration1)
 
 
 
