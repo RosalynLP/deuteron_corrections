@@ -1,0 +1,22 @@
+meta:
+   author: Emanueel R. Nocera
+   title: Theoretical predictions
+
+theoryid: 53
+
+use_cuts: nocuts
+
+fit: NNPDF31_nnlo_as_0118_global_deut
+
+pdf: NNPDF31_nnlo_as_0118_global_deut
+
+experiments:
+   - experiment: NMC
+     datasets:
+        -  dataset: NMCPD_P
+   - experiment: DYE886
+     datasets:
+        -  dataset: DYE886_P
+
+actions_:
+   - experiment_result_table
