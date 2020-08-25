@@ -24,6 +24,13 @@ def matrix_plot_labels(df):
         if labels[x + 1] != labels[x]:
             unique_ds.append([labels[x + 1], x + 1])
     ticklabels = [unique_ds[x][0] for x in range(len(unique_ds))]
+    # Renaming ticklabels
+    ticklabel_dict = {"NMCPD": "NMC",
+                      "NMCPD_D": "NMC",
+                      "SLACD": "SLAC",
+                      "BCDMSD": "BCDMS",
+                      "DYE886_D": "NuSea"}
+    ticklabels = [ticklabel_dict[ticklabel] for ticklabel in ticklabels]
     startlocs = [unique_ds[x][1] for x in range(len(unique_ds))]
     startlocs += [len(labels)]
     ticklocs = [0 for x in range(len(startlocs) - 1)]
@@ -41,7 +48,7 @@ def corrmat_plot(matrix, labeldf, descrip, label):
                             vmax = +1)
     cbar=fig.colorbar(matrixplot, fraction=0.046, pad=0.04)
     cbar.ax.tick_params(labelsize=12)
-    ax.set_title(f"Correlation matrix: {descrip} {label}", fontsize=15)
+  #  ax.set_title(f"{descrip} correlation matrix", fontsize=15)
     ticklocs, ticklabels, startlocs = matrix_plot_labels(labeldf)
     plt.xticks(ticklocs, ticklabels, rotation=45, fontsize=15)
     plt.gca().xaxis.tick_bottom()
@@ -89,7 +96,7 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     ax2.plot(100*expsqrtdiags, '-o', color="purple", label="C")
     ax2.plot(100*totsqrtdiags, '-o', color="deepskyblue", label="C+S")
     ax2.set_ylabel("% of data", fontsize=15)
-    ax2.set_title(f"Diagonal elements of covariance matrix: {label}",
+    ax2.set_title(f"Diagonal elements of covariance matrix",
                   fontsize=15)
     ax2.set_ylim([0, 50])
     ticklocs, ticklabels, startlocs = matrix_plot_labels(fp1_table)

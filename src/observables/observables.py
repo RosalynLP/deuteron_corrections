@@ -11,7 +11,6 @@ import seaborn as sns
 
 sns.set()
 
-
 def matrix_plot_labels(df):
     datasetlabels = [x for x in df["dataset"]]
     points = [x for x in df["id"]]
@@ -22,6 +21,14 @@ def matrix_plot_labels(df):
         if labels[x + 1] != labels[x]:
             unique_ds.append([labels[x + 1], x + 1])
     ticklabels = [unique_ds[x][0] for x in range(len(unique_ds))]
+    print(ticklabels)
+    # Renaming ticklabels
+    ticklabel_dict = {"NMCPD": "NMC",
+                      "NMCPD_D": "NMC",
+                      "SLACD": "SLAC",
+                      "BCDMSD": "BCDMS",
+                      "DYE886_D": "NuSea"}
+    ticklabels = [ticklabel_dict[ticklabel] for ticklabel in ticklabels]
     startlocs = [unique_ds[x][1] for x in range(len(unique_ds))]
     startlocs += [len(labels)]
     ticklocs = [0 for x in range(len(startlocs) - 1)]
