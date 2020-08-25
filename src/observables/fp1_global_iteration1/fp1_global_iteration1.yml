@@ -1,0 +1,30 @@
+meta:
+   author: Rosalyn Pearson
+   title: Theoretical predictions
+
+theoryid: 53
+
+use_cuts: fromfit
+
+fit: NNPDF31_nnlo_as_0118_deuteron_only_ite
+
+pdf: NNPDF31_nnlo_as_0118_deuteron_only_ite
+
+experiments:
+   - experiment: NMC
+     datasets:
+        - { dataset: NMCPD_D, cfac: [DEU1] }
+   - experiment: SLAC
+     datasets:
+        - dataset: SLACD
+   - experiment: BCDMS
+     datasets:
+        - dataset: BCDMSD
+   - experiment: DYE886
+     datasets:
+        - { dataset: DYE886_D, cfac: [DEU1] }
+
+
+actions_:
+   - experiment_result_table
+   - experiments_covmat
