@@ -1,0 +1,40 @@
+meta:
+    title: distances proton baseline vs iteration 1 (shifted)
+    keywords: [deuteron]
+    author: ERN
+
+current:
+  fit: {id: 200609-ern-001}
+  pdf: {id: 200609-ern-001, label: "baseline" }
+
+reference: 
+  fit: {id: NNPDF31_nnlo_as_0118_global_deut_ite_shift}
+  pdf: {id: NNPDF31_nnlo_as_0118_global_deut_ite_shift, label: "proton, shifted"}
+
+pdfs:
+    - from_: current
+    - from_: reference
+
+Q: 10
+
+basespecs:
+    - basis: flavour
+
+pdfscalespecs:
+    - xscale: log
+
+distspecs:
+   - ymin: 0
+     ymax: 15
+     xmin: 0.01
+     xmax: 0.7
+
+y_label: '$d[x,Q]$'
+
+template: report.md
+
+normalize:
+  normalize_to: 1
+
+actions_:
+  - report(main=true)
