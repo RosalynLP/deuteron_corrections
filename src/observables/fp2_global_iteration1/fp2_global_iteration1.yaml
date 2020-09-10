@@ -8,7 +8,7 @@ use_cuts: fromfit
 
 fit: NNPDF31_nnlo_as_0118_global_deut
 
-pdf: NNPDF31_nnlo_as_0118_proton_only
+pdf: NNPDF31_nnlo_as_0118_global_deut
 
 experiments:
    - experiment: NMC

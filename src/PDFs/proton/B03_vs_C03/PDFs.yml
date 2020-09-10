@@ -1,0 +1,30 @@
+meta:
+    title: PDF comparison 10 GeV
+    keywords: [deuteron]
+    author: ERN
+
+pdfs:
+    - {id: NNPDF31_nnlo_as_0118_global_deut, label: "deweighted, iteration 1"}
+    - {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "deweighted, iteration 1"}
+
+Q: 10.0
+
+basespecs:
+    - basis: flavour
+
+pdfscalespecs:
+    - xscale: log
+
+distspecs:
+   - ymin: 0.5
+     ymax: 1.5
+     xmin: 0.0001
+     xmax: 1
+     
+normalize:
+  normalize_to: 1
+
+template: report.md
+
+actions_:
+    - report(main=true)

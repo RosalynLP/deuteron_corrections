@@ -10,6 +10,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib import cm, colors as mcolors
+import sys
+
+np.set_printoptions(threshold=sys.maxsize)
 
 sns.set()
 
@@ -62,7 +65,8 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
 
     T_fp2 = fp2_table["theory_central"]
     D = fp1_table["data_central"]
-
+    T_fp1 = fp1_table["theory_central"]
+    
     # Calculating errors on T_fp1 by taking standard deviation
     T_fp1_reps = fp1_table.loc[:, fp1_table.columns.str.contains("rep")]
     nrep = len(T_fp1_reps.values.T)
@@ -70,13 +74,20 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     T_fp2_repeat = np.tile(T_fp2.values, (nrep,1)).T
     deltas = T_fp1_reps.values - T_fp2_repeat
 
+    T_fp1_repeat = np.tile(T_fp1.values, (nrep,1)).T
+    deltasprime =  T_fp1_reps.values - T_fp1_repeat
+
     covmat = (1/nrep) * deltas@deltas.T
+    np.savetxt(f"covmatrix_{label}.csv", covmat, delimiter=",")
+    covmatprime = (1/nrep) * deltasprime@deltasprime.T
+    np.savetxt(f"covmatrix_shift_{label}.csv", covmatprime, delimiter=",")
+    
     normcovmat = covmat/np.outer(D.values, D.values)
     normexpcovmat = expcovmat/np.outer(D.values, D.values)
     expsqrtdiags = np.sqrt(np.diag(normexpcovmat))
     totcovmat = covmat + expcovmat
     totnormcovmat = totcovmat/np.outer(D.values, D.values)
-
+    
     fig_th = corrmat_plot(covmat, fp1_table, "theory", label)
     fig_exp = corrmat_plot(expcovmat, fp1_table, "experiment", label)
     fig_tot = corrmat_plot(totcovmat, fp1_table, "total", label)
@@ -107,17 +118,17 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
 
 # Loading DIS and global experiment tables
 
-fp1_table_DIS = pd.read_table(
-    "../observables/fp1/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2]
-)
-
-fp2_table_DIS = pd.read_table(
-    "../observables/fp2/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2]
-)
+#fp1_table_DIS = pd.read_table(
+#    "../observables/fp1/output/tables/experiment_result_table.csv",
+#    dtype={"user_id": float},
+#    index_col=[0,1,2]
+#)
+#
+#fp2_table_DIS = pd.read_table(
+#    "../observables/fp2/output/tables/experiment_result_table.csv",
+#    dtype={"user_id": float},
+#    index_col=[0,1,2]
+#)
 
 fp1_table_global = pd.read_table(
     "../observables/fp1_global/output/tables/experiment_result_table.csv",
@@ -138,17 +149,17 @@ fp2_table_global_iteration1 = pd.read_table(
 
 # Loading DIS and experiment covmats
 
-fp1_covmat_DIS = pd.read_table(
-    "../observables/fp1/output/tables/experiments_covmat.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2], header=[0,1,2]
-)
+#fp1_covmat_DIS = pd.read_table(
+#    "../observables/fp1/output/tables/experiments_covmat.csv",
+#    dtype={"user_id": float},
+#    index_col=[0,1,2], header=[0,1,2]
+#)
 
-fp2_covmat_DIS = pd.read_table(
-    "../observables/fp2/output/tables/experiments_covmat.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2], header=[0,1,2]
-)
+#fp2_covmat_DIS = pd.read_table(
+#    "../observables/fp2/output/tables/experiments_covmat.csv",
+#    dtype={"user_id": float},
+#    index_col=[0,1,2], header=[0,1,2]
+#)
 
 fp1_covmat_global = pd.read_table(
     "../observables/fp1_global/output/tables/experiments_covmat.csv",
@@ -170,13 +181,13 @@ fp2_covmat_global_iteration1 = pd.read_table(
 
 # Plotting
 
-covmat_plots("DIS", fp1_table_DIS, fp2_table_DIS,
-             fp1_covmat_DIS)
+#covmat_plots("DIS", fp1_table_DIS, fp2_table_DIS,
+#             fp1_covmat_DIS)
 
 covmat_plots("global_proton", fp1_table_global, fp2_table_global,
              fp1_covmat_global)
              
-covmat_plots("Iteration 1", fp1_table_global, fp2_table_global_iteration1,
+covmat_plots("ite_1", fp1_table_global, fp2_table_global_iteration1,
  	     fp1_covmat_global)
  	     
  	     

@@ -1,0 +1,26 @@
+meta:
+    title: PDF comparison 10 GeV
+    keywords: [deuteron]
+    author: ERN
+
+pdfs:
+    - {id: nNNPDF20_nlo_as_0118_D2, label: "nNNPDF2.0"}
+    - {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron, ite 1"}
+
+Q: 10
+
+flavours: [u,ubar,s,c,g]
+
+pdfscalespecs:
+    - xscale: log
+
+distspecs:
+   - ymin: 0
+     ymax: 2
+     xmin: 0.001
+     xmax: 1
+
+template: report.md
+
+actions_:
+    - report(main=true)
