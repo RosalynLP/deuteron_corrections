@@ -5,11 +5,11 @@ meta:
 
 current:
   fit: {id: NNPDF31_nnlo_as_0118_global_deut}
-  pdf: {id: NNPDF31_nnlo_as_0118_global_deut, label: "proton, iteration 0" }
+  pdf: {id: NNPDF31_nnlo_as_0118_global_deut, label: "global-ite1-dw" }
 
 reference: 
   fit: {id: NNPDF31_nnlo_as_0118_global_deut_ite}
-  pdf: {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "proton, iteration 1"}
+  pdf: {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "global-ite2-sh"}
 
 pdfs:
     - from_: current
@@ -25,9 +25,9 @@ pdfscalespecs:
 
 distspecs:
    - ymin: 0
-     ymax: 15
-     xmin: 0.01
-     xmax: 0.7
+     ymax: 10
+     xmin: 0.001
+     xmax: 1.0
 
 y_label: '$d[x,Q]$'
 

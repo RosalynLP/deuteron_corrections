@@ -5,11 +5,11 @@ meta:
 
 current:
   fit: {id: NNPDF31_nnlo_as_0118_deuteron_only}
-  pdf: {id: NNPDF31_nnlo_as_0118_deuteron_only, label: "deuteron, iteration 0" }
+  pdf: {id: NNPDF31_nnlo_as_0118_deuteron_only, label: "deuteron-ite1" }
 
 reference: 
   fit: {id: NNPDF31_nnlo_as_0118_deuteron_only_ite}
-  pdf: {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron, iteration 1"}
+  pdf: {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron-ite2"}
 
 pdfs:
     - from_: current
@@ -25,9 +25,9 @@ pdfscalespecs:
 
 distspecs:
    - ymin: 0
-     ymax: 15
-     xmin: 0.01
-     xmax: 0.7
+     ymax: 10
+     xmin: 0.001
+     xmax: 1.0
 
 y_label: '$d[x,Q]$'
 

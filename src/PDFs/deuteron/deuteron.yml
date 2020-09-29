@@ -5,7 +5,8 @@ meta:
 
 pdfs:
     - {id: nNNPDF20_nlo_as_0118_D2, label: "nNNPDF2.0"}
-    - {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron, ite 1"}
+    - {id: NNPDF31_nnlo_as_0118_deuteron_only, label: "deuteron-ite1"}
+    - {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron-ite2"}
 
 Q: 10
 
@@ -15,8 +16,7 @@ pdfscalespecs:
     - xscale: log
 
 distspecs:
-   - ymin: 0
-     ymax: 2
+   - ymin: -0.03
      xmin: 0.001
      xmax: 1
 
