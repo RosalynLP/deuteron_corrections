@@ -1,0 +1,43 @@
+meta:
+  title: Comparing deuteron only fit with nNNPDF deuteron fit
+  author: Rosalyn Pearson
+  keywords: [deuteron]
+
+
+pdfs:
+    - nNNPDF20_nlo_as_0118_D2
+    - NNPDF31_nnlo_as_0118_deuteron_only
+    - NNPDF31_nnlo_as_0118_deuteron_only_ite
+
+
+Q: 10
+
+pdfnormalize:
+    - normtitle: Absolute
+    - normalize_to: 1
+      normtitle: Ratio
+
+basespecs:
+    - basis: flavour
+      basistitle: Flavour basis
+    - basis: evolution
+      basistitle: Evolution basis
+
+pdfscalespecs:
+    - xscale: log
+      xscaletitle: Log
+    - xscale: linear
+      xscaletitle: Linear
+      
+template_text: |
+  {@with pdfscalespecs@}
+  {@with basespecs@}
+  {@with pdfnormalize@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@endwith@}
+  
+actions_:
+  - report(main=True)

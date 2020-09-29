@@ -1,0 +1,128 @@
+baseline:
+  fit: {id: 200609-ern-001, label: "Baseline"}
+  pdf:
+    from_: fit
+  theory: 
+    from_: fit
+  theoryid: 
+    from_: theory
+  speclabel: "Baseline"
+
+it1dw:
+  fit: {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "Iteration 1"}
+  pdf: 
+    from_: fit
+  theory: 
+    from_: fit
+  theoryid: 
+    from_: theory
+  speclabel: "Iteration 1"
+  
+it1shift:
+  fit: {id:  NNPDF31_nnlo_as_0118_global_deut_ite_shift, label: "Iteration 1, shifted"}
+  pdf: 
+    from_: fit
+  theory: 
+    from_: fit
+  theoryid: 
+    from_: theory
+  speclabel: "Iteration 1 shifted"
+
+pdfs:
+    - from_: baseline
+    - from_: it1dw
+    - from_: it1shift
+fits:
+    - from_: baseline
+    - from_: it1dw
+    - from_: it1shift
+
+meta:
+    title: Proton PDF plots for deuteron project
+    keywords: [deuteron]
+    author: Rosalyn Pearson
+
+use_cuts: True
+
+Q: 10.0
+
+pdfnormalize:
+    - normtitle: Absolute
+
+    - normalize_to: 1
+      normtitle: Ratio
+
+basespecs:
+    - basis: flavour
+      basistitle: Flavour basis
+    - basis: evolution
+      basistitle: Evolution basis
+
+pdfscalespecs:
+    - xscale: log
+      xscaletitle: Log
+    - xscale: linear
+      xscaletitle: Linear
+
+distspecs:
+   - ymin: 0
+     ymax: 20
+
+errspecs:
+   - ymin: 0
+     ymax: 0.12
+
+pos_use_kin: True
+
+dataset_report:
+    meta: Null
+    template: data.md
+
+pdf_report:
+    meta: Null
+    template: pdf.md
+
+template: report.md
+
+experiments:
+    from_: fit
+
+positivity:
+      from_: fit
+
+dataspecs:
+  - theoryid: 
+      from_: baseline
+    pdf: 
+      from_: baseline
+    fit:
+      from_: baseline
+    speclabel:
+      from_: baseline
+      
+  - theoryid: 
+      from_: it1dw
+    pdf: 
+      from_: it1dw
+    fit:
+      from_: it1dw
+    speclabel:
+      from_: it1dw
+
+  - theoryid: 
+      from_: it1shift
+    pdf: 
+      from_: it1shift
+    fit:
+      from_: it1shift
+    speclabel:
+      from_: it1shift
+
+normalize:
+  normalize_to: 1
+
+datanorm:
+    normalize_to: data
+
+actions_:
+  - report(main=true)
