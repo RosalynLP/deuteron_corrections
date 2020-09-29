@@ -46,19 +46,20 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     T_fp1_errs = T_fp1_reps.std(axis=1)
 
     # Plotting
-    fig, ax = plt.subplots(figsize=(15, 10))
+    fig, ax = plt.subplots(figsize=(20, 7))
     ax.errorbar(range(len(T_fp1)),
                 T_fp1 / T_fp2,
                 yerr=T_fp1_errs / T_fp2,
                 marker=".",
                 ls = '')
     ticklocs, ticklabels, startlocs = matrix_plot_labels(fp1_table)
-    plt.xticks(ticklocs, ticklabels, rotation=45, fontsize=15)
+    plt.xticks(ticklocs, ticklabels, rotation=40, fontsize=16)
     # Shift startlocs elements 0.5 to left so lines are between indexes
     startlocs_lines = [x - 0.5 for x in startlocs]
     ax.margins(x=0, y=0)
-    ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=20)
-    ax.set_ylim([0.8,1.4])
+    ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=28)
+    ax.set_ylim([0.85,1.15])
+    plt.yticks(fontsize=16)
     ymin, ymax = ax.get_ylim()
     xmin, xmax = ax.get_xlim()
     ax.hlines(1, xmin, xmax, linestyles="-")
@@ -68,16 +69,6 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
 
 
 # Loading DIS and global experiment tables
-
-#fp1_table_DIS = pd.read_table(
-#    "./fp1/output/tables/experiment_result_table.csv",
-#    dtype={"user_id": float}
-#)
-
-#fp2_table_DIS = pd.read_table(
-#    "./fp2/output/tables/experiment_result_table.csv",
-#    dtype={"user_id": float}
-#)
 
 fp1_table_global = pd.read_table(
     "./fp1_global/output/tables/experiment_result_table.csv",
@@ -98,10 +89,7 @@ fp2_table_global_iteration1 = pd.read_table(
 
 # Plotting
 
-#plot_observable_ratio("DIS", fp1_table_DIS, fp2_table_DIS)
-
 plot_observable_ratio("global_proton", fp1_table_global, fp2_table_global)
-
 plot_observable_ratio("ite_1", fp1_table_global, fp2_table_global_iteration1)
 
 

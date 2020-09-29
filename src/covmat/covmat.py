@@ -42,7 +42,7 @@ def matrix_plot_labels(df):
     return ticklocs, ticklabels, startlocs
 
 def corrmat_plot(matrix, labeldf, descrip, label):
-    fig, ax = plt.subplots(figsize=(6,6))
+    fig, ax = plt.subplots(figsize=(7,7))
     diag_minus_half = (np.diagonal(matrix))**(-0.5)
     corrmat = diag_minus_half[:,np.newaxis]*matrix*diag_minus_half
     matrixplot = ax.matshow(corrmat,
@@ -102,20 +102,21 @@ def covmat_plots(label, fp1_table, fp2_table, fp1_covmat):
     # Diag element plot
     sqrtdiags = np.sqrt(np.diag(normcovmat))
     totsqrtdiags = np.sqrt(np.diag(totnormcovmat))
-    fig_diag, ax2 = plt.subplots(figsize=(15,6))
+    fig_diag, ax2 = plt.subplots(figsize=(20,7))
     ax2.plot(100*sqrtdiags, '-o', color="darkorange", label="S")
     ax2.plot(100*expsqrtdiags, '-o', color="purple", label="C")
     ax2.plot(100*totsqrtdiags, '-o', color="deepskyblue", label="C+S")
-    ax2.set_ylabel("% of data", fontsize=15)
+    ax2.set_ylabel("% of data", fontsize=20)
     ax2.set_title(f"Diagonal elements of covariance matrix",
-                  fontsize=15)
-    ax2.set_ylim([0, 50])
+                  fontsize=28)
+    ax2.set_ylim([0, 35])
     ticklocs, ticklabels, startlocs = matrix_plot_labels(fp1_table)
     plt.xticks(ticklocs, ticklabels, rotation=30, ha="right", fontsize=15)
     # Shift startlocs elements 0.5 to left so lines are between indexes
     startlocs_lines = [x - 0.5 for x in startlocs]
     ymin, ymax = ax2.get_ylim()
     xmin, xmax = ax2.get_xlim()
+    plt.yticks(fontsize=16)
     ax2.vlines(startlocs_lines, ymin, ymax, linestyles="dashed")
     ax2.margins(x=0, y=0)
     ax2.legend(fontsize=15)
