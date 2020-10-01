@@ -1,0 +1,146 @@
+propdfs:
+     - fit: { id: 200609-ern-001, label: "global-base" }
+       pdf:
+         from_: fit
+       theory:
+         from_: fit
+       theoryid:
+         from_: theory
+
+prodata:
+  - experiments:
+      - experiment: NMC
+        datasets:
+          - {dataset: NMCPD, frac: 0.5}
+          - {dataset: NMC, frac: 0.5}
+      - experiment: SLAC
+        datasets:
+          - {dataset: SLACP, frac: 0.5}
+          - {dataset: SLACD, frac: 0.5}
+      - experiment: BCDMS
+        datasets:
+          - {dataset: BCDMSP, frac: 0.5}
+          - {dataset: BCDMSD, frac: 0.5}
+      - experiment: CHORUS
+        datasets:
+          - {dataset: CHORUSNUPb, frac: 0.5}
+          - {dataset: CHORUSNBPb, frac: 0.5}
+      - experiment: NTVDMN
+        datasets:
+          - {dataset: NTVNUDMNFe, frac: 0.5, cfac: [MAS]}
+          - {dataset: NTVNBDMNFe, frac: 0.5, cfac: [MAS]}
+      - experiment: HERACOMB
+        datasets:
+          - {dataset: HERACOMBNCEM, frac: 0.5}
+          - {dataset: HERACOMBNCEP460, frac: 0.5}
+          - {dataset: HERACOMBNCEP575, frac: 0.5}
+          - {dataset: HERACOMBNCEP820, frac: 0.5}
+          - {dataset: HERACOMBNCEP920, frac: 0.5}
+          - {dataset: HERACOMBCCEM, frac: 0.5}
+          - {dataset: HERACOMBCCEP, frac: 0.5}
+      - experiment: HERAF2CHARM
+        datasets:
+          - {dataset: HERAF2CHARM, frac: 0.5}
+      - experiment: F2BOTTOM
+        datasets:
+          - {dataset: H1HERAF2B, frac: 1.0}
+          - {dataset: ZEUSHERAF2B, frac: 1.0}
+      - experiment: DYE886
+        datasets:
+          - {dataset: DYE886R, frac: 1.0}
+          - {dataset: DYE886P, frac: 0.5, cfac: [QCD]}
+      - experiment: DYE605
+        datasets:
+          - {dataset: DYE605, frac: 0.5, cfac: [QCD]}
+      - experiment: CDF
+        datasets:
+          - {dataset: CDFZRAP, frac: 1.0, cfac: [QCD]}
+      - experiment: D0
+        datasets:
+          - {dataset: D0ZRAP, frac: 1.0, cfac: [QCD]}
+          - {dataset: D0WEASY, frac: 1.0, cfac: [QCD]}
+          - {dataset: D0WMASY, frac: 1.0, cfac: [QCD]}
+      - experiment: ATLASDY
+        datasets:
+          - {dataset: ATLASWZRAP36PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASZHIGHMASS49FB, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASLOMASSDY11EXT, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASWZRAP11, frac: 0.5, cfac: [QCD]}
+      - experiment: ATLASJET
+        datasets:
+          - {dataset: ATLAS1JET11, frac: 0.5, cfac: [QCD]}
+      - experiment: ATLASZPT
+        datasets:
+          - {dataset: ATLASZPT8TEVMDIST, frac: 0.5, cfac: [QCD], sys: 10}
+          - {dataset: ATLASZPT8TEVYDIST, frac: 0.5, cfac: [QCD], sys: 10}
+      - experiment: ATLASTOP
+        datasets:
+          - {dataset: ATLASTTBARTOT, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASTOPDIFF8TEVTRAPNORM, frac: 1.0, cfac: [QCD]}
+      - experiment: CMSDY
+        datasets:
+          - {dataset: CMSWEASY840PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSWMASY47FB, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSDY2D11, frac: 0.5, cfac: [QCD]}
+          - {dataset: CMSWMU8TEV, frac: 1.0, cfac: [QCD]}
+      - experiment: CMSJET
+        datasets:
+          - {dataset: CMSJETS11, frac: 0.5, cfac: [QCD]}
+      - experiment: CMSZPT
+        datasets:
+          - {dataset: CMSZDIFF12, frac: 1.0, cfac: [QCD, NRM], sys: 10}
+      - experiment: CMSTOP
+        datasets:
+          - {dataset: CMSTTBARTOT, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSTOPDIFF8TEVTTRAPNORM, frac: 1.0, cfac: [QCD]}
+      - experiment: LHCbZ
+        datasets:
+          - {dataset: LHCBZ940PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: LHCBZEE2FB, frac: 1.0, cfac: [QCD]}
+      - experiment: LHCBWZ
+        datasets:
+          - {dataset: LHCBWZMU7TEV, frac: 1.0, cfac: [QCD, NRM]}
+          - {dataset: LHCBWZMU8TEV, frac: 1.0, cfac: [QCD, NRM]}
+
+  - experiments:
+      - experiment: ATLAS
+        datasets:
+          - {dataset: ATLASWZRAP36PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASZHIGHMASS49FB, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASLOMASSDY11EXT, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASWZRAP11, frac: 0.5, cfac: [QCD]}
+          - {dataset: ATLAS1JET11, frac: 0.5, cfac: [QCD]}
+          - {dataset: ATLASZPT8TEVMDIST, frac: 0.5, cfac: [QCD], sys: 10}
+          - {dataset: ATLASZPT8TEVYDIST, frac: 0.5, cfac: [QCD], sys: 10}
+          - {dataset: ATLASTTBARTOT, frac: 1.0, cfac: [QCD]}
+          - {dataset: ATLASTOPDIFF8TEVTRAPNORM, frac: 1.0, cfac: [QCD]}
+      - experiment: CMS
+        datasets:
+          - {dataset: CMSWEASY840PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSWMASY47FB, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSDY2D11, frac: 0.5, cfac: [QCD]}
+          - {dataset: CMSWMU8TEV, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSJETS11, frac: 0.5, cfac: [QCD]}
+          - {dataset: CMSZDIFF12, frac: 1.0, cfac: [QCD, NRM], sys: 10}
+          - {dataset: CMSTTBARTOT, frac: 1.0, cfac: [QCD]}
+          - {dataset: CMSTOPDIFF8TEVTTRAPNORM, frac: 1.0, cfac: [QCD]}
+      - experiment: LHCb
+        datasets:
+          - {dataset: LHCBZ940PB, frac: 1.0, cfac: [QCD]}
+          - {dataset: LHCBZEE2FB, frac: 1.0, cfac: [QCD]}
+          - {dataset: LHCBWZMU7TEV, frac: 1.0, cfac: [QCD, NRM]}
+          - {dataset: LHCBWZMU8TEV, frac: 1.0, cfac: [QCD, NRM]}
+
+
+use_cuts: fromfit
+
+template_text: |
+  {@with propdfs@}
+
+  ### {@fit@} 
+  {@ prodata experiments_chi2_table @}  
+
+  {@endwith@}
+
+actions_:
+  - report(main=true)
