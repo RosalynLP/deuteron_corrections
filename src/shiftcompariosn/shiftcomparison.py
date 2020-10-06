@@ -28,14 +28,8 @@ fp2_table = pd.read_table(
     index_col=[0,1,2]
 )
 
-cfacnum_table = pd.read_table(
-    "../cfactor/deuteron1/output/tables/experiment_result_table.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2]
-)
-
-cfacdenom_table = pd.read_table(
-    "../cfactor/deuteron0/output/tables/experiment_result_table.csv",
+nNNPDF_table = pd.read_table(
+    "../observables/nNNPDF_global/output/tables/experiment_result_table.csv",
     dtype={"user_id": float},
     index_col=[0,1,2]
 )
@@ -48,9 +42,11 @@ fp1_kintable = pd.read_table(
 
 T_fp1 = fp1_table["theory_central"]
 T_fp2 = fp2_table["theory_central"]
+nNNPDF = nNNPDF_table["theory_central"]
+
 shift = T_fp2.values - T_fp1.values
 cfac = T_fp1.values/T_fp2.values
-    
+cfac_nNNPDF = nNNPDF.values/T_fp2.values
 
 # MMHT model - generate cfac
 def generate_MMHT_cfac(xvals, N, c1, c2, c3e8, xp):
@@ -69,6 +65,7 @@ c_4params = generate_MMHT_cfac(fp1_kintable["x"], 0.589, -0.116, -0.384, 0.0489,
 fig, ax = plt.subplots(figsize=(8,6))
 
 plt.plot(fp1_kintable["x"], cfac, "o", label="from fitted deuteron PDF")
+plt.plot(fp1_kintable["x"], cfac_nNNPDF, "o", label="from nNNPDF2.0")
 #plt.plot(fp1_kintable["x"], c_3params, "o", label="MMSTWW 3 params")
 plt.plot(fp1_kintable["x"], c_4params, "o", label="MMHT2014 NNLO 4 params")
 ax.set_xlim(0.01,1)
