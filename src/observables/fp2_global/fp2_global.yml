@@ -20,10 +20,11 @@ experiments:
    - experiment: BCDMS
      datasets:
         - dataset: BCDMSD
-   - experiment: DYE886
-     datasets:
-        -  dataset: DYE886R
+#   - experiment: DYE886
+#     datasets:
+#        -  dataset: DYE886R
 
 actions_:
    - experiment_result_table
    - experiments_covmat
+   - experiments_xq2_table
