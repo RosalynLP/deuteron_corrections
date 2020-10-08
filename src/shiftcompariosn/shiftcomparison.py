@@ -15,8 +15,9 @@ np.set_printoptions(threshold=sys.maxsize)
 sns.set_style(style="ticks")
 
 import apfel
+import lhapdf
 
-xlha = np.logspace(-2, 0, num=60)[:-2]
+xlha = np.logspace(-2, 0, num=100)[:-2]
 
 # activate some options
 apfel.SetPerturbativeOrder(2)
@@ -40,6 +41,9 @@ Q = 10
 F2s_proton = []
 for i in range(1,101):
     apfel.SetReplica(i)
+    alphaQCD = lhapdf.mkAlphaS("NNPDF31_nnlo_as_0118_global_deut_ite",i)
+    alphas = alphaQCD.alphasQ(Q)
+    apfel.SetAlphaQCDRef(alphas,Q)
     apfel.ComputeStructureFunctionsAPFEL(Q,Q)
     F2reps = []
     for x in xlha:
@@ -52,11 +56,13 @@ cvs_proton = np.mean(F2s_proton, axis=0)
 
 # Setting deuteron only PDF
 apfel.SetPDFSet("NNPDF31_nnlo_as_0118_deuteron_only_ite")
-#apfel.InitializeAPFEL_DIS()
 
 F2s_deuteron = []
 for i in range(1,101):
     apfel.SetReplica(i)
+    alphaQCD = lhapdf.mkAlphaS("NNPDF31_nnlo_as_0118_deuteron_only_ite",i)
+    alphas = alphaQCD.alphasQ(Q)
+    apfel.SetAlphaQCDRef(alphas,Q)
     apfel.ComputeStructureFunctionsAPFEL(Q,Q)
     F2reps = []
     for x in xlha:
@@ -72,10 +78,15 @@ cvs_deuteron = np.mean(F2s_deuteron, axis=0)
 apfel.SetPerturbativeOrder(1)
 apfel.SetMassScheme("FONLL-B")
 apfel.SetPDFSet("nNNPDF20_nlo_as_0118_D2")
+apfel.EnableIntrinsicCharm(False)
+#apfel.InitializeAPFEL_DIS()
 
 F2s_nuc = []
 for i in range(1,1001):
     apfel.SetReplica(i)
+    alphaQCD = lhapdf.mkAlphaS("nNNPDF20_nlo_as_0118_D2",i)
+    alphas = alphaQCD.alphasQ(Q)
+    apfel.SetAlphaQCDRef(alphas,Q)
     apfel.ComputeStructureFunctionsAPFEL(Q,Q)
     F2reps = []
     for x in xlha:
@@ -88,9 +99,8 @@ cvs_nuc = np.mean(F2s_nuc, axis=0)
     
 cfac_deut = cvs_deuteron/cvs_proton
 cfac_nuc = cvs_nuc/cvs_proton
-errs_deut = errs_deuteron/cvs_proton
-errs_nuc = errs_nuc/cvs_proton
-
+errs_deut = np.sqrt((errs_deuteron/cvs_deuteron)**2. + (errs_proton/cvs_proton)**2.)*cfac_deut
+errs_nuc  = np.sqrt((errs_nuc/cvs_nuc)**2. + (errs_proton/cvs_proton)**2.)*cfac_nuc
 
 # MMHT model - generate cfac
 def generate_MMHT_cfac(xvals, N, c1, c2, c3e8, xp,
@@ -120,11 +130,11 @@ c_4params, err = generate_MMHT_cfac(xlha, 0.589, -0.116, -0.384, 0.0489, 0.03,
 
 fig, ax = plt.subplots(figsize=(8,6))
 
-plt.plot(xlha, cfac_deut, label="from fitted deuteron PDF", color="C0", linewidth="5", linestyle=":")
-plt.plot(xlha, cfac_nuc, label="from nNNPDF2.0", color="C1", linestyle="--", linewidth="5")
+plt.plot(xlha, cfac_deut, label="deuteron-ite2 (NNLO)", color="C0", linewidth="5", linestyle=":")
+plt.plot(xlha, cfac_nuc, label="nNNPDF2.0 (NLO)", color="C1", linestyle="--", linewidth="5")
 plt.fill_between(xlha, cfac_deut-errs_deut, cfac_deut+errs_deut, alpha=0.5, color="C0")
 plt.fill_between(xlha,  cfac_nuc-errs_nuc, cfac_nuc+errs_nuc, alpha=0.5, color="C1")
-plt.plot(xlha, c_4params, "-", label="MMHT2014 NNLO 4 params", color="C2", linestyle="-", linewidth="5")
+plt.plot(xlha, c_4params, "-", label="MMHT2014 (NNLO 4 params.)", color="C2", linestyle="-", linewidth="5")
 plt.fill_between(xlha, c_4params-err, c_4params+err, alpha=0.5, color="C2")
 ax.set_xlim(0.01,1)
 ax.set_xscale("log")
