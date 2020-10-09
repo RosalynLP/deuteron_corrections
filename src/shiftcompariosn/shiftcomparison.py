@@ -130,12 +130,12 @@ c_4params, err = generate_MMHT_cfac(xlha, 0.589, -0.116, -0.384, 0.0489, 0.03,
 
 fig, ax = plt.subplots(figsize=(8,6))
 
-plt.plot(xlha, cfac_deut, label="deuteron-ite2 (NNLO)", color="C0", linewidth="5", linestyle=":")
-plt.plot(xlha, cfac_nuc, label="nNNPDF2.0 (NLO)", color="C1", linestyle="--", linewidth="5")
-plt.fill_between(xlha, cfac_deut-errs_deut, cfac_deut+errs_deut, alpha=0.5, color="C0")
-plt.fill_between(xlha,  cfac_nuc-errs_nuc, cfac_nuc+errs_nuc, alpha=0.5, color="C1")
-plt.plot(xlha, c_4params, "-", label="MMHT2014 (NNLO 4 params.)", color="C2", linestyle="-", linewidth="5")
-plt.fill_between(xlha, c_4params-err, c_4params+err, alpha=0.5, color="C2")
+plt.plot(xlha, cfac_deut, label="deuteron-ite2 (NNLO)", color="cornflowerblue", linewidth="5", linestyle=":")
+plt.plot(xlha, cfac_nuc, label="nNNPDF2.0 (NLO)", color="darkblue", linestyle="--", linewidth="5")
+plt.fill_between(xlha, cfac_deut-errs_deut, cfac_deut+errs_deut, alpha=0.5, color="cornflowerblue")
+plt.fill_between(xlha,  cfac_nuc-errs_nuc, cfac_nuc+errs_nuc, alpha=0.5, color="darkblue")
+plt.plot(xlha, c_4params, "-", label="MMHT2014 (NNLO 4 params.)", color="orange", linestyle="-", linewidth="5")
+plt.fill_between(xlha, c_4params-err, c_4params+err, alpha=0.5, color="orange")
 ax.set_xlim(0.01,1)
 ax.set_xscale("log")
 ax.set_ylim([0.85,1.15])
@@ -146,7 +146,7 @@ plt.title(r"$Q$ = 10 GeV", fontsize="30")
 ax.tick_params(labelsize="16")
 ax.hlines(1, xmin, xmax, linestyles="-")
 ax.legend(fontsize="15")
-plt.savefig(f"deut_10.png")
+plt.savefig(f"deut_{Q}.png")
 
 
 
