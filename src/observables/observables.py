@@ -57,7 +57,7 @@ def plot_observable_ratio(label, fp1_table, fp2_table):
     # Shift startlocs elements 0.5 to left so lines are between indexes
     startlocs_lines = [x - 0.5 for x in startlocs]
     ax.margins(x=0, y=0)
-    ax.set_title(r"$T_i^d[f_d] / \langle T_i^d[f_p] \rangle$", fontsize=28)
+    ax.set_title(r"$T_i^d[f_d^0] / \langle T_i^d[f_s^0] \rangle$", fontsize=28)
     ax.set_ylim([0.85,1.15])
     plt.yticks(fontsize=16)
     ymin, ymax = ax.get_ylim()
