@@ -11,20 +11,19 @@ fit: NNPDF31_nnlo_as_0118_1000
 pdf: NNPDF31_nnlo_as_0118_proton_only
 
 experiments:
-   - experiment: NMC
-     datasets:
-        -  dataset: NMCPD
    - experiment: SLAC
      datasets:
         - dataset: SLACD
    - experiment: BCDMS
      datasets:
         - dataset: BCDMSD
-#   - experiment: DYE886
-#     datasets:
-#        -  dataset: DYE886R
+   - experiment: NMC
+     datasets:
+        -  dataset: NMCPD
+   - experiment: DYE886
+     datasets:
+        -  dataset: DYE886R
 
 actions_:
    - experiment_result_table
    - experiments_covmat
-   - experiments_xq2_table

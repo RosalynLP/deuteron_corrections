@@ -11,15 +11,15 @@ fit: NNPDF31_nnlo_as_0118_global_deut
 pdf: NNPDF31_nnlo_as_0118_global_deut
 
 experiments:
-   - experiment: NMC
-     datasets:
-        -  dataset: NMCPD
    - experiment: SLAC
      datasets:
         - dataset: SLACD
    - experiment: BCDMS
      datasets:
         - dataset: BCDMSD
+   - experiment: NMC
+     datasets:
+        -  dataset: NMCPD
    - experiment: DYE886
      datasets:
         -  dataset: DYE886R
