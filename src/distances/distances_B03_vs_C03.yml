@@ -9,7 +9,7 @@ current:
 
 reference: 
   fit: {id: NNPDF31_nnlo_as_0118_global_deut_ite}
-  pdf: {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "global-ite2-sh"}
+  pdf: {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "global-ite2-dw"}
 
 pdfs:
     - from_: current
