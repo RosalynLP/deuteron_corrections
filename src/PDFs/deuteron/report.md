@@ -2,6 +2,6 @@
 
 PDFs 10 GeV
 ------------------
-{@with pdfscalespecs::distspecs@}
+{@with bases::pdfscalespecs::distspecs@}
 {@plot_pdfs@}
 {@endwith@}

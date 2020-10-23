@@ -5,12 +5,16 @@ meta:
 
 pdfs:
     - {id: nNNPDF20_nlo_as_0118_D2, label: "nNNPDF2.0"}
-    - {id: NNPDF31_nnlo_as_0118_deuteron_only, label: "deuteron-ite1"}
-    - {id: NNPDF31_nnlo_as_0118_deuteron_only_ite, label: "deuteron-ite2"}
+    - {id: NNPDF31_nnlo_as_0118_deut, label: "deuteron-ite1"}
+    - {id: NNPDF31_nnlo_as_0118_deut_ite, label: "deuteron-ite2"}
+
 
 Q: 10
 
-flavours: [u,ubar,s,c,g]
+#flavours: [u,ubar,s,c,g]
+
+bases:
+  - basis: deuteron
 
 pdfscalespecs:
     - xscale: log
