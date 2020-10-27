@@ -1,0 +1,21 @@
+meta:
+   author: Rosalyn Pearson
+   title: Theoretical predictions
+
+theoryid: 53
+
+use_cuts: fromfit
+
+fit: NNPDF31_nnlo_as_0118_global_deut
+pdf: NNPDF31_nnlo_as_0118_global_deut
+
+dataset_inputs:
+         - dataset: SLACD
+         - dataset: BCDMSD
+         - dataset: NMCPD
+         - dataset: DYE886R
+
+actions_:
+   - group_result_table
+   - groups_covmat
+   

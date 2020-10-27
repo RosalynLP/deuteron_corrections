@@ -1,0 +1,31 @@
+meta:
+    title: PDF comparison 10 GeV
+    keywords: [deuteron]
+    author: ERN
+
+pdfs:
+    - {id: 200609-ern-001, label: "global-base"}
+    - {id: NNPDF31_nnlo_as_0118_global_deut_ite_shift, label: "global-ite2-dw"}
+    - {id: NNPDF31_nnlo_as_0118_global_deut_ite, label: "global-ite2-sh"}   
+
+Q: 10.0
+
+basespecs:
+    - basis: du_ratio
+
+pdfscalespecs:
+    - xscale: linear
+
+distspecs:
+   - ymin: -0.6
+     ymax: 1.1
+     xmin: 0.001
+     xmax: 0.8
+     
+normalize:
+  normalize_to: 1
+
+template: report.md
+
+actions_:
+    - report(main=true)
