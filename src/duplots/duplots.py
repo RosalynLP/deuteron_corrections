@@ -26,11 +26,9 @@ for (setname, pdfset) in pdfsets.items():
     p    = lhapdf.mkPDF(pdfset, 0)
     pdfs = lhapdf.mkPDFs(pdfset)    
     N    = len(pdfs)
-    # Creating  dictionaries for dynamic variable assignment
     R = []
     errs = []
     # Loop over flavours and members to fill matrices with values
-    # (ignoring 0th replica) 
     for x in xlha:
         Rx = []
         for k in range(0,N):
