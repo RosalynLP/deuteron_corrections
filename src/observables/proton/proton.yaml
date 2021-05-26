@@ -1,19 +1,19 @@
 meta:
-   author: Rosalyn Pearson
+   author: Emanuele R. Nocera
    title: Theoretical predictions
 
-theoryid: 53
+theoryid: 200
 
-use_cuts: fromfit
+use_cuts: internal
 
-fit: NNPDF31_nnlo_as_0118_global_deut
-pdf: NNPDF31_nnlo_as_0118_global_deut
+pdf: 210519-ern-003
 
 dataset_inputs:
          - dataset: SLACD
          - dataset: BCDMSD
          - dataset: NMCPD
-         - dataset: DYE886R
+         - { dataset: DYE886R, cfac: [QCD] }
+         - { dataset: DYE906R, cfac: [ACC,QCD] }
 
 actions_:
    - group_result_table

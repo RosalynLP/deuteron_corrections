@@ -9,7 +9,7 @@ use_cuts: internal
 pdf: 210525-ern-002
 
 dataset_inputs:
-         - { dataset: DYE886_D, cfac: [DEU1,QCD] }
+         - { dataset: DYE906_D, cfac: [DEU1,ACC,QCD] }
 
 actions_:
    - group_result_table

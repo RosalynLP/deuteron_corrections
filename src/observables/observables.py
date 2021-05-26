@@ -23,11 +23,15 @@ def matrix_plot_labels(df):
     ticklabels = [unique_ds[x][0] for x in range(len(unique_ds))]
     print(ticklabels)
     # Renaming ticklabels
-    ticklabel_dict = {"NMCPD": "NMC",
-                      "NMCPD_D": "NMC",
-                      "SLACD": "SLAC",
+    ticklabel_dict = {"SLACD": "SLAC",
+                      "SLACD_dw_ite": "SLAC",
                       "BCDMSD": "BCDMS",
-                      "DYE886_D": "NuSea"}
+                      "BCDMSD_dw_ite": "BCDMS",
+                      "NMCPD": "NMC",
+                      "NMCPD_D": "NMC",
+                      "NMCPD_dw_ite": "NMC",
+                      "DYE886_D": "NuSea",
+                      "DYE906_D": "SeaQuest"}
     ticklabels = [ticklabel_dict[ticklabel] for ticklabel in ticklabels]
     startlocs = [unique_ds[x][1] for x in range(len(unique_ds))]
     startlocs += [len(labels)]
@@ -87,10 +91,20 @@ fp2_table_global_iteration1 = pd.read_table(
     dtype={"user_id": float}
 )
 
+fp2_table_global_iteration2 = pd.read_table(
+    "./fp2_global_iteration2/output/tables/group_dataset_inputs_by_experiment0_group_result_table.csv",
+    dtype={"user_id": float}
+)
+
+fp1_table_global_iteration2 = pd.read_table(
+    "./fp1_global_iteration2/output/tables/group_dataset_inputs_by_experiment0_group_result_table.csv",
+    dtype={"user_id": float}
+)
+
 # Plotting
 
 plot_observable_ratio("global_proton", fp1_table_global, fp2_table_global)
 plot_observable_ratio("ite_1", fp1_table_global, fp2_table_global_iteration1)
-
+plot_observable_ratio("ite_2", fp1_table_global_iteration2, fp2_table_global_iteration2)
 
 

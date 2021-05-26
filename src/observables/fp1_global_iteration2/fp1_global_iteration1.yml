@@ -1,0 +1,29 @@
+meta:
+   author: Emanuele R. Nocera
+   title: Theoretical predictions
+
+theoryid: 200
+
+use_cuts: internal
+
+pdf: 210525-ern-002
+
+experiments:
+   - experiment: SLAC
+     datasets:
+        - dataset: SLACD_dw_ite
+   - experiment: BCDMS
+     datasets:
+        - dataset: BCDMSD_dw_ite
+   - experiment: NMC
+     datasets:
+        - { dataset: NMCPD_D, cfac: [DEU1] }
+   - experiment: DYE886
+     datasets:
+        - { dataset: DYE886_D, cfac: [QCD,DEU1] }
+   - experiment: DYE886
+     datasets:
+        - { dataset: DYE906_D, cfac: [QCD,DEU1,ACC] }
+
+actions_:
+   - experiment_result_table

@@ -35,12 +35,14 @@ def matrix_plot_labels(df):
             unique_ds.append([labels[x + 1], x + 1])
     ticklabels = [unique_ds[x][0] for x in range(len(unique_ds))]
     # Renaming ticklabels
-    ticklabel_dict = {"NMCPD": "NMC",
-                      "NMCPD_D": "NMC",
-                      "SLACD": "SLAC",
+    ticklabel_dict = {"SLACD": "SLAC",
                       "BCDMSD": "BCDMS",
+                      "NMCPD": "NMC",
+                      "NMCPD_D": "NMC",
                       "DYE886_D": "NuSea",
-                      "DYE886R": "NuSea"}
+                      "DYE886R": "NuSea",
+                      "DYE906_D": "NuSea",
+                      "DYE906R": "SeaQuest"}
     ticklabels = [ticklabel_dict[ticklabel] for ticklabel in ticklabels]
     startlocs = [unique_ds[x][1] for x in range(len(unique_ds))]
     startlocs += [len(labels)]
@@ -85,7 +87,7 @@ def diag_element_plot(normcovmat, totnormcovmat, expsqrtdiags, descrip, label):
     ax2.set_ylabel("% of data", fontsize=20)
     ax2.set_title(f"Diagonal elements of covariance matrix, {descrip}",
                   fontsize=28)
-    ax2.set_ylim([0, 120])
+    ax2.set_ylim([0, 35])
     ticklocs, ticklabels, startlocs = matrix_plot_labels(proton)
     plt.xticks(ticklocs, ticklabels, rotation=30, ha="right", fontsize=15)
     # Shift startlocs elements 0.5 to left so lines are between indexes
@@ -170,12 +172,6 @@ def make_covmat(label, proton, deuteron, expcov):
 
 # Loading observables
 
-nmc = pd.read_table(
-    "../observables/NMC/output/tables/group_result_table.csv",
-    dtype={"user_id": float},
-    index_col=[0,1,2]
-)
-
 slac = pd.read_table(
     "../observables/SLAC/output/tables/group_result_table.csv",
     dtype={"user_id": float},
@@ -188,8 +184,20 @@ bcdms = pd.read_table(
     index_col=[0,1,2]
 )
 
+nmc = pd.read_table(
+    "../observables/NMC/output/tables/group_result_table.csv",
+    dtype={"user_id": float},
+    index_col=[0,1,2]
+)
+
 dye866 = pd.read_table(
     "../observables/DYE866/output/tables/group_result_table.csv",
+    dtype={"user_id": float},
+    index_col=[0,1,2]
+)
+
+dye906 = pd.read_table(
+    "../observables/DYE906/output/tables/group_result_table.csv",
     dtype={"user_id": float},
     index_col=[0,1,2]
 )
@@ -206,6 +214,6 @@ expcov = pd.read_table(
     index_col=[0,1,2], header=[0,1,2]
 )
 
-deuteron = pd.concat([nmc,slac,bcdms,dye866])
+deuteron = pd.concat([slac,bcdms,nmc,dye866,dye906])
 
 make_covmat("deuteron", proton, deuteron, expcov)
